@@ -1,0 +1,33 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #06A4E0;
+}
+.main-layout{
+  background-color: white;
+  margin: 0px auto;
+  color: black;
+  min-height: 70vh;
+}
+input {
+  outline: none;
+  background: transparent;
+  border: none;
+  background-color: rgb(255, 255, 255);
+  padding: 6px;
+  border: 1px solid whitesmoke;
+  border-radius: 5px;
+}
+
+.navbar-nav a{
+  text-decoration: none;
+  color: white;
+}
+
+.btn-secondary a {
+  color: #fff;
+  text-decoration: none;
+}

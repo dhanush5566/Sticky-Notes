@@ -1,0 +1,45 @@
+.AddRemind{
+    width: 352px;
+    height: auto;
+   background-color: azure;
+   margin-left: 15px;
+   margin-top: 10px;
+}
+.heading-title{
+    background-color: #5CD2E6;
+    padding: 17px;
+    font-size: 1.5rem;
+    border-bottom: 1px solid whitesmoke;
+    text-transform: capitalize;
+}
+.AddRemind-little-title{
+   margin-left: 10px;    
+}
+
+.input-text-btn{
+    margin-bottom: 1rem;
+}
+.addremind-icons{
+    display: flex;
+    justify-content: flex-end;
+    background-color: #5CD2E6;
+    padding: 15px;
+}
+.icons{
+    font-size: 1.4rem;
+    margin-left: 10px;
+    cursor: pointer;
+}
+label.card-label {
+    width: 134px;
+    font-weight: 500;
+}
+.select-control {
+    min-width: 100px;
+}
+input[readonly] {
+    background-color: transparent;
+}
+select[readOnly] {
+    opacity: 0.6;
+}
