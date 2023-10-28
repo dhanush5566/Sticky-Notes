@@ -1,6 +1,6 @@
 import React from 'react';
 import "../AddRemind.css"
-import { BiTrash, BiPencil } from "react-icons/bi";
+import { BiTrash } from "react-icons/bi";
 
 function PastReminderCard({ pastRemindersData, deleteActionHandler }) {
     console.log(pastRemindersData)

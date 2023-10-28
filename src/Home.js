@@ -46,9 +46,10 @@ function Home() {
     const {name, value} = ev.target;
     const editReminderId = editedReminder.id;
     remindersData?.map((item) => {
-      if(item.id == editReminderId) {
+      if(item.id === editReminderId) {
         item[name] = value;
       }
+      return item;
     });
     setRemindersData([...remindersData]);
   }
@@ -57,11 +58,12 @@ function Home() {
     console.log(editedReminder, 'editMode');
     const editReminderId = editedReminder.id;
     remindersData?.map((item) => {
-      if(item.id == editReminderId) {
+      if(item.id === editReminderId) {
         item.isEditMode = true;
       } else {
         item.isEditMode = false;
       }
+      return item;
     });
     setRemindersData([...remindersData]);
     setEditReminderItem(editedReminder);
@@ -111,6 +113,7 @@ function Home() {
           remainderData?.map((item) => {
             item.isEditMode = false;
             item.dueDate = getDateHandler(item.dueDate);
+            return item;
           })
           setRemindersData(remainderData);
         } else {
@@ -137,6 +140,7 @@ function Home() {
 
   useEffect(() => {
     loadRemindersData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

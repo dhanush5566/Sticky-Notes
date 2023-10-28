@@ -5,7 +5,7 @@ import Loader from '../Loader';
 
 
 
-let pastRemindersData = [];
+//let pastRemindersData = [];
 
 function PastReminders() {
 
@@ -93,15 +93,15 @@ function PastReminders() {
       const updatedItems = remindersData?.filter((item) =>{
         const titleLowercase = item.title.toLowerCase();
         if(priority && val) {
-          return (item.priority == priority && titleLowercase.includes(val))
+          return (item.priority === priority && titleLowercase.includes(val))
         } else if(priority) {
-          return (item.priority == priority);
+          return (item.priority === priority);
         } else {
           return (titleLowercase.includes(val));
         }
       })
       setRemindersData([...updatedItems]);
-      if(updatedItems?.length == 0) {
+      if(updatedItems?.length === 0) {
         setShowCards(false);
         setShowLoader(false);
       }
@@ -111,7 +111,7 @@ function PastReminders() {
     const resethandler = () =>{
       setShowCards(true);
       setFormValues(initialFormValues);
-      console.log(pastRemindersData);
+      //console.log(pastRemindersData);
       setDisableBtn(false);
       setRemindersData(remindersDataClone);
     }
@@ -146,7 +146,7 @@ function PastReminders() {
                   </form>
                 </div>
                 {showCards && !showLoader ?
-                    <div className="cards d-flex">
+                    <div className="cards d-flex flex-wrap">
                         <PastReminderCard pastRemindersData={remindersData} deleteActionHandler={deleteHandler} />
                     </div>
                     : <div className='text-center mt-4'>

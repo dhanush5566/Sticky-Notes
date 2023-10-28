@@ -1,6 +1,4 @@
 import React from 'react'
-import Renew from './Renew';
-import PayTele from './PayTele';
 import RemindCard from './AddReMind';
 import "./Cardcart.css"
 function Cardcart({reminderData, deleteActionHandler, editActionHandler, editInputControlActionHandler}) {
