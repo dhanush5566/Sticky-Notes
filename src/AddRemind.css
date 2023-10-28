@@ -12,8 +12,13 @@
     border-bottom: 1px solid whitesmoke;
     text-transform: capitalize;
 }
-.AddRemind-little-title{
-   margin-left: 10px;    
+.AddRemind-body{
+   padding: 10px 2px 10px 15px;
+   background-color: #E3E5E6;
+}
+
+.input-control {
+    width: 186px;
 }
 
 .input-text-btn{
@@ -36,6 +41,7 @@ label.card-label {
 }
 .select-control {
     min-width: 100px;
+    height: 34px;
 }
 input[readonly] {
     background-color: transparent;

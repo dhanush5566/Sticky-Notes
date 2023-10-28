@@ -7,11 +7,11 @@ function PastReminderCard({ pastRemindersData, deleteActionHandler }) {
 
     const resp = pastRemindersData.map((item) => {
         return (
-            <div className='AddRemind' key={item.id}>
-                <h1 className='heading-title'>
+            <div className={'AddRemind '+item.priority+'-priority-card'} key={item.id}>
+                <h1 className='heading-title mb-0 text-truncate'>
                     {item?.title}
                 </h1>
-                <div className='AddRemind-little-title'>
+                <div className='AddRemind-body'>
                     <label className='card-label mb-4'>Details</label>
                     <span className='input-text-btn'>{item?.details}</span><br />
                     <label className='card-label mb-4'>Due Date</label>
@@ -25,7 +25,7 @@ function PastReminderCard({ pastRemindersData, deleteActionHandler }) {
                 </div>
                 <div className='addremind-icons'>
                     {/* <BiPencil className='icons'></BiPencil> */}
-                    <BiTrash className='icons' color='red' onClick={() => {deleteActionHandler(item)}}></BiTrash>
+                    <BiTrash className='icons' title='Delete Card' color='red' onClick={() => {deleteActionHandler(item)}}></BiTrash>
                 </div>
             </div>
 

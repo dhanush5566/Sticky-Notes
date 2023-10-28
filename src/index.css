@@ -31,3 +31,15 @@ input {
   color: #fff;
   text-decoration: none;
 }
+
+.Medium-priority-card .heading-title, .Medium-priority-card .addremind-icons{
+  background-color: #B6E026;
+}
+
+.High-priority-card .heading-title, .High-priority-card .addremind-icons{
+  background-color: #1DA8AA;
+}
+
+.Low-priority-card .heading-title, .Low-priority-card .addremind-icons{
+  background-color: #C3E6CB;
+}

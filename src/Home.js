@@ -6,9 +6,41 @@ import { Link } from "react-router-dom";
 import Cardcart from './Cardcart';
 import Loader from './Loader';
 
-
-
-//let currentRemindersData = [];
+/* let currentRemindersData = [
+  {
+    "id": 1,
+    "title": "book Ticket",
+    "details": "Need to get book.",
+    "dueDate": "2023-09-25T00:00:00.000+00:00",
+    "priority": "Medium",
+    "createdDate": null
+  },
+  {
+    "id": 2,
+    "title": "Sing song",
+    "details": "Sing a song.",
+    "dueDate": "2023-10-12T00:00:00.000+00:00",
+    "completionDate": "2023-10-09T00:00:00.000+00:00",
+    "priority": "Low",
+    "createdDate": null
+  },
+  {
+      "id": 40,
+      "title": "Call Helpdesk",
+      "details": "Inform about access issue and get it resolved.",
+      "dueDate": "2023-10-31T00:00:00.000+00:00",
+      "priority": "High",
+      "createdDate": null
+  },
+  {
+      "id": 41,
+      "title": "TTD Ticket Booking",
+      "details": "Tickets will be released on 25 Jan 2024 ",
+      "dueDate": "2023-11-02T00:00:00.000+00:00",
+      "priority": "High",
+      "createdDate": null
+  }
+] */
 
 function Home() {
   const [showCards, setShowCards] = useState(false);
@@ -43,11 +75,17 @@ function Home() {
   const onEditInputControlHandler = (ev, editedReminder) => {
     console.log('edit input control changed');
     console.log(ev);
-    const {name, value} = ev.target;
+    const {name, value, type} = ev.target;
     const editReminderId = editedReminder.id;
     remindersData?.map((item) => {
       if(item.id === editReminderId) {
-        item[name] = value;
+        //item.isCompletionDateShow = false;
+        if(type === 'radio') {
+          item.isCompleted = value;
+          item.isCompletionDateShow = value=== 'yes'? true: false;
+        } else {
+          item[name] = value;
+        }
       }
       return item;
     });
@@ -80,6 +118,13 @@ function Home() {
         "priority": editReminderItem.priority,
         "createdDate": null
       }
+      if(editReminderItem.isCompleted) {
+        body.isCompleted = true;
+        body.completionDate = editReminderItem.completionDate
+      } else {
+        body.isCompleted = null;
+        body.completionDate = null;
+      }
       setShowLoader(true);
     axios.put('http://localhost:8181/api/reminder/update/'+body.id, body)
       .then((res) => {
@@ -102,7 +147,10 @@ function Home() {
 
   function loadRemindersData() {
     setShowLoader(true);
-    axios.get('http://localhost:8181/api/reminder/current')
+    let url;
+    //url = 'https://jsonplaceholder.typicode.com/posts';
+    url = 'http://localhost:8181/api/reminder/current';
+    axios.get(url)
       .then((res) => {
         console.log(res.data);
         console.log(res);
@@ -110,9 +158,14 @@ function Home() {
           setShowCards(true);
           
           const remainderData = res.data;
+          //const remainderData = currentRemindersData;
           remainderData?.map((item) => {
             item.isEditMode = false;
+            item.isCompleted = item.completionDate? 'yes': 'no';
+            item.isCompletionDateShow = item.completionDate? true: false;
             item.dueDate = getDateHandler(item.dueDate);
+            const completionDate = item.completionDate? item.completionDate: '';
+            item.completionDate = getDateHandler(completionDate);
             return item;
           })
           setRemindersData(remainderData);
@@ -129,7 +182,7 @@ function Home() {
   }
 
   const getDateHandler = (date) => {
-    let dateStr = new Date(date);
+    let dateStr = date? new Date(date): new Date();
     const dd = String(dateStr.getDate()).padStart(2, '0');
     const mm = String(dateStr.getMonth() + 1).padStart(2, '0');
     const yyyy = dateStr.getFullYear();
