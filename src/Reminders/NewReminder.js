@@ -15,7 +15,7 @@ function NewReminder() {
         title: '',
         details: '',
         dueDate: '',
-        priority: ''
+        priority: 'High'
     })
     const navigate = useNavigate();
 

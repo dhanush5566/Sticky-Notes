@@ -6,41 +6,7 @@ import { Link } from "react-router-dom";
 import Cardcart from './Cardcart';
 import Loader from './Loader';
 
-/* let currentRemindersData = [
-  {
-    "id": 1,
-    "title": "book Ticket",
-    "details": "Need to get book.",
-    "dueDate": "2023-09-25T00:00:00.000+00:00",
-    "priority": "Medium",
-    "createdDate": null
-  },
-  {
-    "id": 2,
-    "title": "Sing song",
-    "details": "Sing a song.",
-    "dueDate": "2023-10-12T00:00:00.000+00:00",
-    "completionDate": "2023-10-09T00:00:00.000+00:00",
-    "priority": "Low",
-    "createdDate": null
-  },
-  {
-      "id": 40,
-      "title": "Call Helpdesk",
-      "details": "Inform about access issue and get it resolved.",
-      "dueDate": "2023-10-31T00:00:00.000+00:00",
-      "priority": "High",
-      "createdDate": null
-  },
-  {
-      "id": 41,
-      "title": "TTD Ticket Booking",
-      "details": "Tickets will be released on 25 Jan 2024 ",
-      "dueDate": "2023-11-02T00:00:00.000+00:00",
-      "priority": "High",
-      "createdDate": null
-  }
-] */
+
 
 function Home() {
   const [showCards, setShowCards] = useState(false);
@@ -116,14 +82,17 @@ function Home() {
         "details": editReminderItem.details,
         "dueDate":editReminderItem.dueDate,
         "priority": editReminderItem.priority,
+        "completionDate": editReminderItem.completionDate,
         "createdDate": null
       }
-      if(editReminderItem.isCompleted) {
+      console.log('is edited value:'+editReminderItem.isCompleted)
+      if(editReminderItem.isCompleted == 'yes') {
         body.isCompleted = true;
         body.completionDate = editReminderItem.completionDate
-      } else {
-        body.isCompleted = null;
+        
+      } else if(editReminderItem.isCompleted == 'no'){
         body.completionDate = null;
+        body.isCompleted = null;
       }
       setShowLoader(true);
     axios.put('http://localhost:8181/api/reminder/update/'+body.id, body)
@@ -148,7 +117,6 @@ function Home() {
   function loadRemindersData() {
     setShowLoader(true);
     let url;
-    //url = 'https://jsonplaceholder.typicode.com/posts';
     url = 'http://localhost:8181/api/reminder/current';
     axios.get(url)
       .then((res) => {
@@ -213,7 +181,7 @@ function Home() {
         </div>
         :<div className='text-center mt-4'>
           {
-            showLoader? <Loader /> : <h3>No Data</h3>
+            showLoader? <Loader /> : <h3>No Reminders Currently</h3>
           }
           </div>
         }
