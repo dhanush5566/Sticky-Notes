@@ -86,11 +86,11 @@ function Home() {
         "createdDate": null
       }
       console.log('is edited value:'+editReminderItem.isCompleted)
-      if(editReminderItem.isCompleted == 'yes') {
+      if(editReminderItem.isCompleted === 'yes') {
         body.isCompleted = true;
         body.completionDate = editReminderItem.completionDate
         
-      } else if(editReminderItem.isCompleted == 'no'){
+      } else if(editReminderItem.isCompleted === 'no'){
         body.completionDate = null;
         body.isCompleted = null;
       }

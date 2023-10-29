@@ -27,6 +27,10 @@ input {
   color: white;
 }
 
+.logout-btn{
+  padding: 1px 12px 4px 12px !important;
+}
+
 .btn-secondary a {
   color: #fff;
   text-decoration: none;

@@ -55,7 +55,7 @@ function NewReminder() {
             })
         .then((res) => {
             console.log(res);
-            navigate('/', { replace: true });
+            navigate('/home', { replace: true });
            })
     
           // Catch errors if any
@@ -111,7 +111,7 @@ return (
                         <div className="d-flex justify-content-center mt-3">
                             <Button variant="primary" type="submit">Save Reminder</Button>
                             <Button variant="secondary" type="submit">
-                                <Link to='/'>Cancel</Link>
+                                <Link to='/home'>Cancel</Link>
                             </Button>
                         </div>
                     </Form>
